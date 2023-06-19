@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size_huge">24sp</dimen>
+    <dimen name="font_size_medium">14sp</dimen>
+    <dimen name="font_size_bigger">18sp</dimen>
+    <dimen name="font_size_big">16sp</dimen>
+    <dimen name="font_size_small">12sp</dimen>
+    <dimen name="font_weight_bold">600</dimen>
+    <dimen name="font_weight_regular">400</dimen>
+</resources>
