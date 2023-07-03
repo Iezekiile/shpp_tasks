@@ -8,25 +8,25 @@
 
     <View
         android:id="@+id/bottomBg"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="?attr/colorOnBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.5" />
 
     <View
         android:id="@+id/topBg"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:background="?attr/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.5"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.5" />
 
     <ImageView
         android:id="@+id/avatar"
@@ -36,11 +36,11 @@
         android:contentDescription="@string/profile_avatar"
         android:foreground="@drawable/founded_fg"
         app:layout_constraintBottom_toBottomOf="@+id/topBg"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/topBg"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/topBg"
-        app:layout_constraintVertical_bias="0.3"
-        app:layout_constraintHorizontal_bias="0.5"/>
+        app:layout_constraintVertical_bias="0.267" />
 
     <TextView
         android:id="@+id/settings"
@@ -66,64 +66,63 @@
         android:textColor="@color/white_text"
         android:textFontWeight="600"
         android:textSize="@dimen/font_size_bigger"
-        app:layout_constraintBottom_toTopOf="@+id/bottomBg"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/topBg"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/avatar"
-        app:layout_constraintVertical_bias="0.095" />
+        app:layout_constraintVertical_bias="0.052" />
 
     <TextView
         android:id="@+id/career"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/career"
         android:textColor="@color/gray_text"
         android:textFontWeight="600"
-        app:layout_constraintBottom_toTopOf="@+id/bottomBg"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/topBg"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullName"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintTop_toBottomOf="@+id/fullName" />
 
     <TextView
         android:id="@+id/homeAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/home_address"
         android:textColor="@color/gray_text"
         android:textFontWeight="600"
-        app:layout_constraintBottom_toTopOf="@+id/bottomBg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="@+id/topBg"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/career"
-        app:layout_constraintVertical_bias="0.283" />
+        app:layout_constraintTop_toBottomOf="@+id/career" />
 
     <Button
         android:id="@+id/editProfileButton"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="40dp"
         android:background="@drawable/button_bg_1"
         android:fontFamily="@font/open_sans"
         android:text="@string/edit_profile"
         android:textColor="@color/black"
+        android:layout_marginBottom="8dp"
         android:textFontWeight="600"
         android:textSize="@dimen/font_size_medium"
         app:layout_constraintBottom_toTopOf="@+id/contactsButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toEndOf="@+id/topBg"
         app:layout_constraintTop_toTopOf="@+id/bottomBg"
-        app:layout_constraintVertical_bias="0.950"
+        app:layout_constraintVertical_bias="1"
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/contactsButton"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="55dp"
         android:background="@drawable/button_bg_2"
         android:fontFamily="@font/open_sans"
@@ -135,9 +134,9 @@
         app:layout_constraintBottom_toBottomOf="@+id/bottomBg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/topBg"
         app:layout_constraintTop_toTopOf="@+id/bottomBg"
-        app:layout_constraintVertical_bias="0.945" />
+        app:layout_constraintVertical_bias="0.951" />
 
     <TextView
         android:id="@+id/fillProfileTextHint"
@@ -145,15 +144,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans"
         android:text="@string/go_to_settings_and_fill_out_the_profile"
-        android:textFontWeight="600"
-        android:textSize="@dimen/font_size_medium"
         android:textColor="@color/black"
+        android:textFontWeight="600"
+        android:layout_marginBottom="8dp"
+        android:textSize="@dimen/font_size_medium"
         app:layout_constraintBottom_toTopOf="@+id/editProfileButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/topBg"
         app:layout_constraintTop_toTopOf="@+id/bottomBg"
-        app:layout_constraintVertical_bias="0.950" />
+        app:layout_constraintVertical_bias="1" />
 
     <ImageButton
         android:id="@+id/facebookButton"
@@ -164,10 +164,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/linkedinButton"
         app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/topBg"
         app:layout_constraintTop_toTopOf="@+id/bottomBg"
-        app:layout_constraintVertical_bias="0.24"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck"/>
+        app:layout_constraintVertical_bias="0.285"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/linkedinButton"
@@ -179,8 +179,8 @@
         app:layout_constraintEnd_toStartOf="@id/instagramButton"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@id/facebookButton"
-        app:layout_constraintTop_toBottomOf="@+id/topBg"
-        app:layout_constraintVertical_bias="0.238"
+        app:layout_constraintTop_toTopOf="@+id/bottomBg"
+        app:layout_constraintVertical_bias="0.285"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -193,8 +193,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@id/linkedinButton"
-        app:layout_constraintTop_toBottomOf="@+id/topBg"
-        app:layout_constraintVertical_bias="0.238"
+        app:layout_constraintTop_toTopOf="@+id/bottomBg"
+        app:layout_constraintVertical_bias="0.285"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

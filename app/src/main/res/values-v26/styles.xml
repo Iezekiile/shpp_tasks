@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="FontTheme">
         <item name="android:font">@font/open_sans</item>
+    </style>
+
+    <style name="ButtonStyle">
+        <item name="colorPrimary">?attr/colorSecondary</item>
+    </style>
+
+    <style name="ButtonGoogleStyle" >
+        <item name="colorPrimary">@color/white</item>
+    </style>
+
+    <style name="TextColor" parent="Theme.Shpp_task1">
+        <item name="colorControlNormal">@color/gray_text</item>
+        <item name="colorControlActivated">@color/gray_text</item>
+    </style>
+
+    <style name="TextInputTheme">
+        <item name="android:theme">@style/TextColor</item>
+        <item name="barrierDirection">bottom</item>
+        <item name="boxBackgroundMode">none</item>
+        <item name="errorTextColor">@color/red_error</item>
     </style>
 </resources>

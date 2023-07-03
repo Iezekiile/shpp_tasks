@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Соціальна мережа</string>
+    <string name="settings">Налаштування</string>
+    <string name="career">Професія</string>
+    <string name="home_address">Домашня адреса</string>
+    <string name="edit_profile">Редагувати профіль</string>
+    <string name="profile_avatar">Зображення профілю</string>
+    <string name="view_my_contacts">ПЕРЕГЛЯНУТИ КОНТАКТИ</string>
+    <string name="go_to_settings_and_fill_out_the_profile">Перейдіть до налаштувань та заповніть профіль</string>
+    <string name="lets_get_acquainted">Давайте знайомитись</string>
+    <string name="fill_out_the_profile_and_go_to_the_application">Заповніть анкету та переходьте до додатку!</string>
+    <string name="e_mail">Електронна пошта</string>
+    <string name="password">Пароль</string>
+    <string name="remember_me">Запам\'ятати мене</string>
+    <string name="or">Або</string>
+    <string name="by_clicking_register_you_agree_to_our_terms_and_conditions">Натискаючи \"Зареєструватися\", ви погоджуєтеся з нашими Умовами та Положеннями</string>
+    <string name="already_have_an_account">Вже маєте обліковий запис?</string>
+    <string name="sign_in">Ввійти</string>
+    <string name="register">Зареєструватися</string>
+    <string name="empty_error">Поле не може бути пустим</string>
+    <string name="short_password_error">Пароль повинен мати принаймні 8 символів</string>
+    <string name="space_on_password_error">Пароль не може містити пробіли</string>
+    <string name="only_lowercase_error">Пароль повинен містити принаймні одну велику літеру</string>
+    <string name="only_uppercase_error">Пароль повинен містити принаймні одну маленьку літеру</string>
+    <string name="digit_lack_error">Пароль повинен містити принаймні одну цифру</string>
+    <string name="incorrect_email">Невірна електронна пошта</string>
+</resources>
