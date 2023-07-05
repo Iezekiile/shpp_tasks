@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="FontTheme">
-        <item name="android:font">@font/open_sans</item>
-    </style>
-
     <style name="ButtonStyle">
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
@@ -12,13 +8,13 @@
         <item name="colorPrimary">@color/white</item>
     </style>
 
-    <style name="TextColor" parent="Theme.Shpp_task1">
+    <style name="TextInputColor" parent="AppTheme">
         <item name="colorControlNormal">@color/gray_text</item>
         <item name="colorControlActivated">@color/gray_text</item>
     </style>
 
-    <style name="TextInputTheme">
-        <item name="android:theme">@style/TextColor</item>
+    <style name="TextInputStyle">
+        <item name="android:theme">@style/TextInputColor</item>
         <item name="barrierDirection">bottom</item>
         <item name="boxBackgroundMode">none</item>
         <item name="errorTextColor">@color/red_error</item>

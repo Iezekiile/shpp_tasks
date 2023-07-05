@@ -15,11 +15,17 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         val fullName = parseEmailToName(intent.getStringExtra("email").toString())
         val fullNameText = resources.getString(R.string.full_name, fullName.first, fullName.second)
-        binding.fullName!!.text = fullNameText
+        binding.fullName.text = fullNameText
         setContentView(view)
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
+    /**
+     * Parses the email string to extract the first name and last name.
+     *
+     * @param email The email string to parse.
+     * @return A Pair containing the first name and last name extracted from the email.
+     */
     private fun parseEmailToName(email: String): Pair<String, String> {
         val parts = email.split("@").firstOrNull()?.split(".")
         val firstName = parts?.getOrNull(0)

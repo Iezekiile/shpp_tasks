@@ -92,7 +92,7 @@
         android:id="@+id/buttonGoogleSignUp"
         android:layout_width="375dp"
         android:layout_height="40dp"
-        android:background="@drawable/button_bg_2"
+        android:background="@drawable/bg_button_rounded"
         android:text="@string/google"
         android:textColor="@color/black"
         android:textFontWeight="600"
@@ -113,7 +113,7 @@
         android:id="@+id/buttonRegister"
         android:layout_width="375dp"
         android:layout_height="55dp"
-        android:background="@drawable/button_bg_1"
+        android:background="@drawable/bg_button_rounded_border"
         android:fontFamily="@font/open_sans"
         android:text="@string/register"
         android:textColor="@color/white_text"
@@ -195,7 +195,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailInputLayout"
-        style="@style/TextInputTheme"
+        style="@style/TextInputStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/viewLayoutBg"
@@ -218,7 +218,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordInputLayout"
-        style="@style/TextInputTheme"
+        style="@style/TextInputStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/viewLayoutBg"
