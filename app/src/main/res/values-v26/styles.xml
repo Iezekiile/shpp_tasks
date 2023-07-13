@@ -3,20 +3,32 @@
     <style name="ButtonStyle">
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
-
-    <style name="ButtonGoogleStyle" >
-        <item name="colorPrimary">@color/white</item>
-    </style>
-
+    
     <style name="TextInputColor" parent="AppTheme">
         <item name="colorControlNormal">@color/gray_text</item>
         <item name="colorControlActivated">@color/gray_text</item>
     </style>
 
-    <style name="TextInputStyle">
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:theme">@style/TextInputColor</item>
         <item name="barrierDirection">bottom</item>
         <item name="boxBackgroundMode">none</item>
-        <item name="errorTextColor">@color/red_error</item>
+        <item name="errorTextColor">?attr/colorError</item>
+        <item name="android:textSize">32sp</item>
+        <item name="helperTextTextColor">?attr/colorError</item>
+        <item name="boxCollapsedPaddingTop">4dp</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="android:textColorHint">?attr/colorOnTertiary</item>
+    </style>
+
+    <style name="TextInputLayout_hintSize">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextInputLayout_editTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:fontFamily">@font/open_sans_family</item>
+        <item name="android:textColor">?attr/colorTertiary</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">0dp</item>
     </style>
 </resources>
