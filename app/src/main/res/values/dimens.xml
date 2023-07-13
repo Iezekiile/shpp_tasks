@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="font_size_huge">24sp</dimen>
-    <dimen name="font_size_medium">14sp</dimen>
-    <dimen name="font_size_bigger">18sp</dimen>
-    <dimen name="font_size_big">16sp</dimen>
-    <dimen name="font_size_small">12sp</dimen>
-    <dimen name="font_weight_bold">600</dimen>
-    <dimen name="font_weight_regular">400</dimen>
-    <dimen name="margin_small">4dp</dimen>
-    <dimen name="margin_medium">8dp</dimen>
-    <dimen name="margin_large">16dp</dimen>
+
+    <dimen name="font_all_size_xxl">24sp</dimen>
+    <dimen name="font_all_size_m">14sp</dimen>
+    <dimen name="font_all_size_xl">18sp</dimen>
+    <dimen name="font_all_size_l">16sp</dimen>
+    <dimen name="font_all_size_s">12sp</dimen>
+
+    <dimen name="margin_all_xs">2dp</dimen>
+    <dimen name="margin_all_s">4dp</dimen>
+    <dimen name="margin_all_m">8dp</dimen>
+    <dimen name="margin_all_l">16dp</dimen>
+    <dimen name="margin_all_xl">24dp</dimen>
+    <dimen name="margin_all_xxl">32dp</dimen>
+
 </resources>
