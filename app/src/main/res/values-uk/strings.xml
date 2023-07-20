@@ -25,4 +25,6 @@
     <string name="only_uppercase_error">Пароль повинен містити принаймні одну маленьку літеру</string>
     <string name="digit_lack_error">Пароль повинен містити принаймні одну цифру</string>
     <string name="incorrect_email">Невірна електронна пошта</string>
+    <string name="contacts">Контакти</string>
+    <string name="add_contacts">Додати контакт</string>
 </resources>
