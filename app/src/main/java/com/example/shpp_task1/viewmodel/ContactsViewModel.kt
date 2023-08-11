@@ -5,19 +5,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.shpp_task1.model.Contact
 import com.example.shpp_task1.model.ContactsData
+import com.example.shpp_task1.view.adapters.ContactActionListener
+import com.example.shpp_task1.view.adapters.ContactsAdapter
 
-interface RecyclerListener {
 
-    fun onItemClicked()
-    fun onButtonClicked(contact: Contact)
-}
-
-class ContactsViewModel(private val contactsData: ContactsData) : ViewModel(), RecyclerListener{
-
-    constructor() : this(ContactsData())
+class ContactsViewModel(private val contactsData: ContactsData) : ViewModel(),
+    ContactActionListener {
 
     private val _contacts: MutableLiveData<List<Contact>> = MutableLiveData()
     val contacts: LiveData<List<Contact>> get() = _contacts
+
+    private var adapter: ContactsAdapter? = null
+
+    fun addAdapter(adapter: ContactsAdapter){
+        this.adapter = adapter
+    }
+    constructor() : this(ContactsData())
 
     init {
         loadContacts()
@@ -25,19 +28,30 @@ class ContactsViewModel(private val contactsData: ContactsData) : ViewModel(), R
 
     private fun loadContacts() {
         val contactsDataList = contactsData.getContacts()
-        _contacts.value = contactsDataList
+        _contacts.value = contactsDataList 
     }
 
-    private fun deleteContact(contact: Contact){
-        contactsData.deleteContact(contact)
-        loadContacts()
+    override fun onContactDelete(contact: Contact) {
+        adapter?.notifyItemRemoved(contactsData.deleteContact(contact))
     }
 
-    override fun onButtonClicked(contact: Contact) {
-        deleteContact(contact)
-    }
-
-    override fun onItemClicked() {
+    override fun onContactDetails(contact: Contact) {
         TODO("Not yet implemented")
     }
+
+    override fun onContactRestore(contact: Contact) {
+        contactsData.addContact(contact)
+        adapter?.notifyItemInserted(0)
+    }
+
+    override fun onContactSwipeToDelete(index: Int) {
+        contactsData.deleteContact(contactsData.getContactOnIndex(index))
+        adapter?.notifyItemRemoved(index)
+    }
+
+    override fun onContactAdd(contact: Contact) {
+        contactsData.addContact(contact)
+        adapter?.notifyItemInserted(0)
+    }
+
 }

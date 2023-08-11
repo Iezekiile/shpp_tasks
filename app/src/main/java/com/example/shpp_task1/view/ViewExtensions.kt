@@ -3,6 +3,9 @@ package com.example.shpp_task1.view
 
 import com.bumptech.glide.Glide
 import com.example.shpp_task1.R
+import com.example.shpp_task1.view.adapters.ContactsAdapter
+
+//  Image loading extension function by using Picasso
 
 //fun ContactsAdapter.loadAvatar(holder: ContactsAdapter.ContactsViewHolder, avatarUrl: String){
 //    if (avatarUrl.isNotBlank()) {
@@ -22,7 +25,12 @@ import com.example.shpp_task1.R
 //}
 
 
-fun ContactsAdapter.loadAvatar(holder: ContactsAdapter.ContactsViewHolder, avatarUrl: String){
+/**
+ * Image loading extension function by using Glide
+ * @param holder - view holder from adapter
+ * @param avatarUrl - image url
+ */
+fun ContactsAdapter.loadAvatar(holder: ContactsAdapter.ContactsViewHolder, avatarUrl: String) {
     if (avatarUrl.isNotBlank()) {
         Glide.with(holder.binding.photoImageView.context)
             .load(avatarUrl)

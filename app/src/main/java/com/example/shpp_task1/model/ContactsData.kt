@@ -4,43 +4,79 @@ import com.github.javafaker.Faker
 
 typealias ContactsListener = (users: List<Contact>) -> Unit
 
+/*
+* A class that represents the data source for the list of contacts.
+*/
 class ContactsData {
     private var contacts = mutableListOf<Contact>()
     private val listeners = mutableSetOf<ContactsListener>()
 
+    /**
+     * Constructor of the class that generates random data for the list of contacts.
+     */
     init {
         val faker = Faker.instance()
         contacts = (1..20).map {
             Contact(
                 id = it.toLong(),
-                name = faker.name().name(),
-                carrier = faker.company().profession(),
-                avatar = IMAGES[(Math.random() * 10).toInt()]
+                username = faker.name().name(),
+                career = faker.company().profession(),
+                avatar = IMAGES[it % IMAGES.size],
+                email = faker.internet().emailAddress(),
+                phone = faker.phoneNumber().phoneNumber(),
+                address = faker.address().fullAddress(),
+                birthday = faker.date().birthday().toString()
             )
         }.toMutableList()
     }
 
-    fun deleteContact(contact: Contact){
+    /**
+     * Method to delete a contact from the list.
+     *
+     * @param contact The contact to be deleted.
+     * @return The index of the deleted contact, or -1 if the contact was not found.
+     */
+    fun deleteContact(contact: Contact): Int {
         val indexToDelete = contacts.indexOfFirst { it.id == contact.id }
         if (indexToDelete != -1) {
             contacts.removeAt(indexToDelete)
             notifyChanges()
         }
+        return indexToDelete
     }
 
+    /**
+     * Method to get a contact at a specific index.
+     *
+     * @param index The index of the contact in the list.
+     * @return The contact at the specified index.
+     */
+    fun getContactOnIndex(index: Int): Contact {
+        return contacts[index]
+    }
+
+    /**
+     * Method to get the entire list of contacts.
+     *
+     * @return The list of contacts.
+     */
     fun getContacts(): MutableList<Contact> {
         return contacts
     }
 
-    fun addListener(listener: ContactsListener) {
-        listeners.add(listener)
-        listener.invoke(contacts)
+    /**
+     * Method to add a new contact to the list.
+     *
+     * @param contact The new contact to add.
+     */
+    fun addContact(contact: Contact) {
+        contacts.add(0, contact)
+        notifyChanges()
     }
 
-    fun removeListener(listener: ContactsListener) {
-        listeners.remove(listener)
-    }
-
+    /**
+     * Private method to notify listeners about changes in the data.
+     */
     private fun notifyChanges() {
         listeners.forEach { it.invoke(contacts) }
     }

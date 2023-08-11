@@ -13,10 +13,15 @@
     <dimen name="margin_all_l">16dp</dimen>
     <dimen name="margin_all_xl">24dp</dimen>
     <dimen name="margin_all_xxl">32dp</dimen>
+    <dimen name="margin_all_xxxl">36dp</dimen>
 
     <dimen name="margin_my_contacts_xm">10dp</dimen>
     <dimen name="margin_item_user_xs">6dp</dimen>
     <dimen name="margin_item_user_xxm">12dp</dimen>
 
-    <dimen name="margin_mycontacts_topguideline">120dp</dimen>
+    <dimen name="margin_my_contacts_topGuideline">120dp</dimen>
+
+    <dimen name="margin_add_contact_headerGuideline">57dp</dimen>
+    <dimen name="margin_add_contact_avatar">14dp</dimen>
+
 </resources>
