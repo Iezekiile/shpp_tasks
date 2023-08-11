@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/topGuideLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/margin_mycontacts_topguideline" />
+        app:layout_constraintGuide_begin="@dimen/margin_my_contacts_topGuideline" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/startGuideLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/margin_all_l"
-         />
+        app:layout_constraintGuide_begin="@dimen/margin_all_l" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/endGuideLine"
@@ -84,15 +83,15 @@
         android:id="@+id/addContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_family"
-        android:textSize="@dimen/font_all_size_xl"
-        android:textColor="@color/white_text"
-        android:textStyle="bold"
-        android:text="@string/add_contacts"
         android:layout_marginTop="@dimen/margin_all_xxl"
-        app:layout_constraintTop_toBottomOf="@id/textContacts"
+        android:fontFamily="@font/open_sans_family"
+        android:text="@string/add_contacts"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/font_all_size_xl"
+        android:textStyle="bold"
+        android:clickable="true"
         app:layout_constraintStart_toStartOf="@id/startGuideLine"
-        />
+        app:layout_constraintTop_toBottomOf="@id/textContacts" />
 
     <View
         android:id="@+id/centerBg"
@@ -112,6 +111,6 @@
         app:layout_constraintBottom_toBottomOf="@id/centerBg"
         app:layout_constraintEnd_toEndOf="@id/endGuideLine"
         app:layout_constraintStart_toStartOf="@id/startGuideLine"
-        app:layout_constraintTop_toTopOf="@id/centerBg"
-        />
+        app:layout_constraintTop_toTopOf="@id/centerBg" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

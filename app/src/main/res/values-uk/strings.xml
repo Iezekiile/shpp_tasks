@@ -27,4 +27,11 @@
     <string name="incorrect_email">Невірна електронна пошта</string>
     <string name="contacts">Контакти</string>
     <string name="add_contacts">Додати контакт</string>
+    <string name="add_contact">Додавання контакту</string>
+    <string name="username">Ім\'я користувача</string>
+    <string name="phone">Телефон</string>
+    <string name="address">Адреса</string>
+    <string name="date_of_birth">Дата народження</string>
+    <string name="save">ЗБЕРЕГТИ</string>
+    <string name="contact_removed">Контакт видалено</string>
 </resources>
