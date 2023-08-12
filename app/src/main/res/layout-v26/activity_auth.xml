@@ -176,11 +176,11 @@
         app:layout_constraintStart_toStartOf="@id/leftGuideline"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxRememberMe" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.example.shpp_task1.CustomGoogleButton
         android:id="@+id/buttonGoogleSignUp"
+        app:buttonFontFamily="@font/open_sans_semi_bold"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:background="@drawable/btn_bg_google" />
+        android:layout_height="40dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textOr"
