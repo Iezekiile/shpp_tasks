@@ -35,4 +35,6 @@
     <string name="date_of_birth">Date of birth</string>
     <string name="save">SAVE</string>
     <string name="contact_removed">Contact has been removed</string>
+    <string name="profile">Profile</string>
+    <string name="message">Message</string>
 </resources>

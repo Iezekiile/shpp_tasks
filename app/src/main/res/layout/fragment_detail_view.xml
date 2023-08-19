@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="SpeakableTextPresentCheck">
+
+
+    <View
+        android:id="@+id/bottomBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorOnBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/topBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottomGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/avatar"
+        android:layout_width="113dp"
+        android:layout_height="113dp"
+        android:layout_marginTop="@dimen/margin_all_xl"
+        android:background="@drawable/ic_contact_avatar"
+        android:contentDescription="@string/profile_avatar"
+        android:foreground="@drawable/imgv_fg_founded"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_family"
+        android:text="@string/profile"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/font_all_size_xl"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/endGuideline"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintTop_toTopOf="@+id/topGuideline" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/buttonBack"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back"
+
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        app:layout_constraintTop_toTopOf="@id/topGuideline"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_all_xl"
+        android:fontFamily="@font/open_sans_family"
+        android:text="@string/full_name"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/font_all_size_xl"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/career"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_all_m"
+        android:fontFamily="@font/open_sans_family"
+        android:text="@string/career"
+        android:textColor="@color/gray_text"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/homeAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_all_l"
+        android:fontFamily="@font/open_sans_family"
+        android:text="@string/home_address"
+        android:textColor="@color/gray_text"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@id/endGuideline"
+        app:layout_constraintStart_toEndOf="@id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/career" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/contactsButton"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:background="@drawable/btn_bg_rounded"
+        android:fontFamily="@font/open_sans_family"
+        android:text="@string/message"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/font_all_size_l"
+        android:textStyle="bold"
+        android:theme="@style/ButtonStyle"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/endGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        tools:ignore="VisualLintButtonSize,TextContrastCheck" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_social_networks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:constraint_referenced_ids="facebookButton,linkedinButton,instagramButton"
+        app:flow_horizontalGap="@dimen/margin_all_xxl"
+        app:layout_constraintBottom_toTopOf="@+id/contactsButton"
+        app:layout_constraintEnd_toStartOf="@+id/endGuideline"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintTop_toBottomOf="@id/topBg" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/facebookButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_facebook"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/linkedinButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_linkedin"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/instagramButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_instagram"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="261dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

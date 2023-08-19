@@ -32,15 +32,15 @@ import com.example.shpp_task1.view.adapters.ContactsAdapter
  */
 fun ContactsAdapter.loadAvatar(holder: ContactsAdapter.ContactsViewHolder, avatarUrl: String) {
     if (avatarUrl.isNotBlank()) {
-        Glide.with(holder.binding.photoImageView.context)
+        Glide.with(holder.binding.avatar.context)
             .load(avatarUrl)
             .circleCrop()
             .placeholder(R.drawable.ic_contact_avatar)
             .error(R.drawable.ic_contact_avatar)
-            .into(holder.binding.photoImageView)
+            .into(holder.binding.avatar)
     } else {
-        Glide.with(holder.binding.photoImageView.context)
+        Glide.with(holder.binding.avatar.context)
             .load(R.drawable.ic_contact_avatar)
-            .into(holder.binding.photoImageView)
+            .into(holder.binding.avatar)
     }
 }

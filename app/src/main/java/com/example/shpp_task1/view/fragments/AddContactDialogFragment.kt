@@ -14,7 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.example.shpp_task1.R
-import com.example.shpp_task1.databinding.ActivityAddContactBinding
+import com.example.shpp_task1.databinding.FragmentAddContactBinding
 import com.example.shpp_task1.model.Contact
 import com.example.shpp_task1.viewmodel.ContactsViewModel
 
@@ -27,7 +27,7 @@ import com.example.shpp_task1.viewmodel.ContactsViewModel
 class AddContactDialogFragment(private val contactsViewModel: ContactsViewModel) :
     DialogFragment() {
 
-    private lateinit var addContactBinding: ActivityAddContactBinding
+    private lateinit var addContactBinding: FragmentAddContactBinding
     private var avatarUri: Uri? = null
 
     /**
@@ -42,7 +42,7 @@ class AddContactDialogFragment(private val contactsViewModel: ContactsViewModel)
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        addContactBinding = ActivityAddContactBinding.inflate(inflater, container, false)
+        addContactBinding = FragmentAddContactBinding.inflate(inflater, container, false)
 
         return addContactBinding.root
     }

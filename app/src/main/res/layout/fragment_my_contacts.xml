@@ -49,7 +49,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@id/startGuideLine"
         app:layout_constraintTop_toTopOf="@id/textContacts"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textContacts"
@@ -77,21 +77,22 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/textContacts"
         app:layout_constraintTop_toTopOf="@id/textContacts"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/addContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_all_xxl"
+        android:clickable="true"
         android:fontFamily="@font/open_sans_family"
         android:text="@string/add_contacts"
         android:textColor="@color/white_text"
         android:textSize="@dimen/font_all_size_xl"
         android:textStyle="bold"
-        android:clickable="true"
         app:layout_constraintStart_toStartOf="@id/startGuideLine"
-        app:layout_constraintTop_toBottomOf="@id/textContacts" />
+        app:layout_constraintTop_toBottomOf="@id/textContacts"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <View
         android:id="@+id/centerBg"

@@ -3,11 +3,15 @@ package com.example.shpp_task1.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shpp_task1.R
 import com.example.shpp_task1.databinding.ItemContactBinding
 import com.example.shpp_task1.model.Contact
+import com.example.shpp_task1.utils.Constants
+import com.example.shpp_task1.view.fragments.MyContactsFragmentDirections
 import com.example.shpp_task1.view.loadAvatar
 import com.google.android.material.snackbar.Snackbar
 
@@ -33,15 +37,19 @@ const val SNACKBAR_DURATION = 5000
  * @param actionListener The listener for handling contact-related actions.
  * @param recycler The RecyclerView instance.
  */
-class ContactsAdapter(private val actionListener: ContactActionListener, recycler: RecyclerView) :
+class ContactsAdapter(
+    private val actionListener: ContactActionListener,
+    recycler: RecyclerView,
+    private val navController: NavController
+) :
     RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>(), View.OnClickListener {
     private val recyclerView = recycler
 
-  var contacts: List<Contact> = emptyList()
-      set(newValue) {
-          field = newValue
-          notifyDataSetChanged()
-      }
+    var contacts: List<Contact> = emptyList()
+        set(newValue) {
+            field = newValue
+            notifyDataSetChanged()
+        }
 
     /**
      * Click event handler for different views in the item layout.
@@ -92,27 +100,55 @@ class ContactsAdapter(private val actionListener: ContactActionListener, recycle
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
         val contact = contacts[position]
         with(holder.binding) {
-
             holder.itemView.tag = contact
             deleteImageViewButton.tag = contact
-
             contactNameTextView.text = contact.username
             contactCarrierTextView.text = contact.career
+            loadAvatar(holder, contact.avatar!!)
+        }
+        setContactDetailListener(holder, contact)
+    }
 
-            loadAvatar(holder, contact.avatar)
+    /**
+     * Sets the listener for the contact detail view.
+     *
+     * @param holder The ViewHolder to bind data to.
+     * @param contact The contact to bind data to.
+     */
+    private fun setContactDetailListener(holder: ContactsViewHolder, contact: Contact){
+        holder.itemView.setOnClickListener {
+            val extras: Array<Pair<View, String>>
+            with(holder.binding) {
+                extras = arrayOf(
+                    setTransitionName(
+                        avatar,
+                        Constants.TRANSITION_NAME_AVATAR + contact.id
+                    ),
+                    setTransitionName(
+                        contactNameTextView,
+                        Constants.TRANSITION_NAME_USERNAME+ contact.id
+                    ), setTransitionName(
+                        contactCarrierTextView,
+                        Constants.TRANSITION_NAME_CAREER+ contact.id
+                    )
+                )
+            }
+            val action =
+                MyContactsFragmentDirections.actionMyContactsFragmentToDetailViewFragment(contact)
+            navController.navigate(action, FragmentNavigatorExtras(*extras))
         }
     }
 
     /**
-     * ViewHolder class for representing each item in the list.
+     * Sets the transition name for a view.
      *
-     * @param binding The ViewBinding for the item layout.
+     * @param view The view to set the transition name for.
+     * @param name The transition name.
+     * @return The view and transition name pair.
      */
-    inner class ContactsViewHolder(val binding: ItemContactBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        init {
-            itemView.setBackgroundResource(R.drawable.bg_view_holder)
-        }
+    private fun setTransitionName(view: View, name: String): Pair<View, String> {
+        view.transitionName = name
+        return view to name
     }
 
     /**
@@ -128,10 +164,22 @@ class ContactsAdapter(private val actionListener: ContactActionListener, recycle
         )
 
         snackbar.duration = SNACKBAR_DURATION
-        snackbar.setAction("Undo") {
+        snackbar.setAction("UNDO") {
             actionListener.onContactRestore(contact)
         }
         snackbar.show()
+    }
+
+    /**
+     * ViewHolder class for representing each item in the list.
+     *
+     * @param binding The ViewBinding for the item layout.
+     */
+    inner class ContactsViewHolder(val binding: ItemContactBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        init {
+            itemView.setBackgroundResource(R.drawable.bg_view_holder)
+        }
     }
 
     /**
@@ -161,6 +209,7 @@ class ContactsAdapter(private val actionListener: ContactActionListener, recycle
             showUndoSnackbar(contact)
         }
     }
+
     /**
      * Initializes the swipe-to-delete functionality for the RecyclerView.
      */

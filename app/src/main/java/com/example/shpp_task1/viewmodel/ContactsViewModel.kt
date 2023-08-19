@@ -36,7 +36,7 @@ class ContactsViewModel(private val contactsData: ContactsData) : ViewModel(),
     }
 
     override fun onContactDetails(contact: Contact) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onContactRestore(contact: Contact) {
