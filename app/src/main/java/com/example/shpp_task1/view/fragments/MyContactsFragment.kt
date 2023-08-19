@@ -1,52 +1,61 @@
-package com.example.shpp_task1.view
+package com.example.shpp_task1.view.fragments
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shpp_task1.R
-import com.example.shpp_task1.databinding.ActivityAddContactBinding
-import com.example.shpp_task1.databinding.ActivityMyContactsBinding
+import com.example.shpp_task1.databinding.FragmentAddContactBinding
+import com.example.shpp_task1.databinding.FragmentMyContactsBinding
+import com.example.shpp_task1.databinding.ItemContactBinding
 import com.example.shpp_task1.model.Contact
 import com.example.shpp_task1.view.adapters.ContactActionListener
 import com.example.shpp_task1.view.adapters.ContactsAdapter
 import com.example.shpp_task1.view.adapters.SpaceItemDecoration
-import com.example.shpp_task1.view.fragments.AddContactDialogFragment
 import com.example.shpp_task1.viewmodel.ContactsViewModel
 
 /**
  * Activity class for displaying a list of contacts and managing contact-related interactions.
  */
-class MyContacts : AppCompatActivity() {
+class MyContactsFragment : Fragment() {
 
-    private lateinit var binding: ActivityMyContactsBinding
-    private lateinit var addContactBinding: ActivityAddContactBinding
+    private lateinit var binding: FragmentMyContactsBinding
+    private lateinit var itemContactBinding: ItemContactBinding
+    private lateinit var addContactBinding: FragmentAddContactBinding
     private lateinit var adapter: ContactsAdapter
     private lateinit var contactsViewModel: ContactsViewModel
+    private lateinit var navController: NavController
 
     /**
      * Called when the activity is starting. Responsible for initializing various components.
      */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMyContactsBinding.inflate(layoutInflater)
-        addContactBinding = ActivityAddContactBinding.inflate(layoutInflater)
-
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentMyContactsBinding.inflate(layoutInflater)
+        addContactBinding = FragmentAddContactBinding.inflate(layoutInflater)
+        itemContactBinding = ItemContactBinding.inflate(layoutInflater)
+        navController = findNavController()
         setAdapter()
         setViewModel()
         setListeners()
         setObservers()
         setRecyclerSettings()
-
-        setContentView(binding.root)
+        return binding.root
     }
 
     /**
      * Sets the RecyclerView's layout manager and adds item spacing.
      */
     private fun setRecyclerSettings() {
-        binding.recyclerContacts.layoutManager = LinearLayoutManager(this)
+        binding.recyclerContacts.layoutManager = LinearLayoutManager(context)
         val spaceBetweenItemsInPixels = resources.getDimensionPixelSize(R.dimen.margin_all_l)
         binding.recyclerContacts.addItemDecoration(SpaceItemDecoration(spaceBetweenItemsInPixels))
         binding.recyclerContacts.adapter = adapter
@@ -64,13 +73,14 @@ class MyContacts : AppCompatActivity() {
      * Initializes the adapter with a ContactActionListener to handle contact-related actions.
      */
     private fun setAdapter() {
+
         adapter = ContactsAdapter(object : ContactActionListener {
             override fun onContactDelete(contact: Contact) {
                 contactsViewModel.onContactDelete(contact)
             }
 
             override fun onContactDetails(contact: Contact) {
-                TODO() // Placeholder for handling contact details action
+                contactsViewModel.onContactDetails(contact)
             }
 
             override fun onContactRestore(contact: Contact) {
@@ -84,7 +94,7 @@ class MyContacts : AppCompatActivity() {
             override fun onContactAdd(contact: Contact) {
                 contactsViewModel.onContactAdd(contact)
             }
-        }, binding.recyclerContacts)
+        }, binding.recyclerContacts,  findNavController())
     }
 
     /**
@@ -93,6 +103,7 @@ class MyContacts : AppCompatActivity() {
     private fun setListeners() {
         setAddContactListener()
     }
+
 
     /**
      * Sets observers to update the adapter when contact data changes.
@@ -105,7 +116,7 @@ class MyContacts : AppCompatActivity() {
      * Observes changes in the contact data and updates the adapter accordingly.
      */
     private fun setContactsObserver() {
-        contactsViewModel.contacts.observe(this) {
+        contactsViewModel.contacts.observe(viewLifecycleOwner) {
             adapter.contacts = it
         }
     }
@@ -116,7 +127,8 @@ class MyContacts : AppCompatActivity() {
     private fun setAddContactListener() {
         binding.addContacts.setOnClickListener {
             val dialog = AddContactDialogFragment(contactsViewModel)
-            dialog.show(supportFragmentManager, "AddContactDialogFragment")
+            dialog.show(parentFragmentManager, "AddContactDialogFragment")
         }
     }
+
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/myContactsFragment">
+
+    <fragment
+        android:id="@+id/myContactsFragment"
+        android:name="com.example.shpp_task1.view.fragments.MyContactsFragment"
+        android:label="MyContactsFragment"
+        tools:layout="@layout/fragment_my_contacts">
+
+        <action
+            android:id="@+id/action_myContactsFragment_to_detailViewFragment"
+            app:destination="@id/detailViewFragment"
+            app:popUpToInclusive="false">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailViewFragment"
+        android:name="com.example.shpp_task1.view.fragments.DetailViewFragment"
+        android:label="DetailViewFragment"
+        tools:layout="@layout/fragment_detail_view">
+        <argument
+            android:name="contactInfo"
+            app:argType="com.example.shpp_task1.model.Contact" />
+    </fragment>
+</navigation>

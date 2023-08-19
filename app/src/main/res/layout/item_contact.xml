@@ -7,7 +7,8 @@
     android:background="?attr/selectableItemBackground">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/photoImageView"
+        android:id="@+id/avatar"
+        android:transitionName="avatarTransition"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="@dimen/margin_all_m"
@@ -30,8 +31,8 @@
         android:layout_marginTop="@dimen/margin_item_user_xs"
         android:layout_marginEnd="@dimen/margin_item_user_xxm"
         tools:text="John Smith"
-        app:layout_constraintTop_toTopOf="@id/photoImageView"
-        app:layout_constraintStart_toEndOf="@id/photoImageView"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintEnd_toStartOf="@id/deleteImageViewButton"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -54,15 +55,16 @@
         android:layout_marginEnd="@dimen/margin_item_user_xxm"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_delete"
-        app:layout_constraintTop_toTopOf="@id/photoImageView"
-        app:layout_constraintBottom_toBottomOf="@id/photoImageView"
+        android:clickable="true"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="photoImageView,contactCarrierTextView"
+        app:constraint_referenced_ids="avatar,contactCarrierTextView"
         app:barrierDirection="bottom"/>
 
     <Space
