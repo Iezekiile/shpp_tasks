@@ -1,4 +1,4 @@
-package com.example.shpp_task1.view.adapters
+package com.example.shpp_task1.utils.ext
 
 import android.graphics.Bitmap
 import android.graphics.BitmapShader
@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Shader
 import com.squareup.picasso.Transformation
+import kotlin.math.min
 
 /*
  * CircleTransform class for Picasso, created with ChatGPT
@@ -14,7 +15,7 @@ class CircleTransform : Transformation {
     override fun key(): String = "circle"
 
     override fun transform(source: Bitmap): Bitmap {
-        val size = Math.min(source.width, source.height)
+        val size = min(source.width, source.height)
 
         val x = (source.width - size) / 2
         val y = (source.height - size) / 2

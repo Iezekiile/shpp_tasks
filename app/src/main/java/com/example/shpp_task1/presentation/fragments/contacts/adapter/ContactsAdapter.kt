@@ -1,30 +1,25 @@
-package com.example.shpp_task1.view.adapters
+package com.example.shpp_task1.presentation.fragments.contacts.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shpp_task1.R
+import com.example.shpp_task1.data.model.Contact
 import com.example.shpp_task1.databinding.ItemContactBinding
-import com.example.shpp_task1.model.Contact
-import com.example.shpp_task1.utils.Constants
-import com.example.shpp_task1.view.fragments.MyContactsFragmentDirections
-import com.example.shpp_task1.view.loadAvatar
+import com.example.shpp_task1.presentation.fragments.contacts.MyContactsFragmentDirections
+import com.example.shpp_task1.presentation.fragments.contacts.utils.ContactsDiffCallback
+import com.example.shpp_task1.presentation.fragments.contacts.vm.ContactsActionListener
+import com.example.shpp_task1.utils.constants.Constants
+import com.example.shpp_task1.utils.constants.FeatureFlags
+import com.example.shpp_task1.utils.ext.setImageByGlide
+import com.example.shpp_task1.utils.ext.setImageByPicasso
 import com.google.android.material.snackbar.Snackbar
 
-/**
- * Interface for handling contact-related actions in the UI.
- */
-interface ContactActionListener {
-    fun onContactDelete(contact: Contact)
-    fun onContactDetails(contact: Contact)
-    fun onContactRestore(contact: Contact)
-    fun onContactSwipeToDelete(index: Int)
-    fun onContactAdd(contact: Contact)
-}
 
 /**
  * The duration in milliseconds for which the Snackbar is displayed.
@@ -32,23 +27,37 @@ interface ContactActionListener {
 const val SNACKBAR_DURATION = 5000
 
 /**
- * Adapter class for managing the list of contacts in a RecyclerView.
+ * RecyclerView adapter class for displaying contacts.
  *
- * @param actionListener The listener for handling contact-related actions.
+ * @param actionListener The listener for the adapter actions.
  * @param recycler The RecyclerView instance.
+ * @param navController The NavController instance.
  */
 class ContactsAdapter(
-    private val actionListener: ContactActionListener,
+    private val actionListener: ContactsActionListener,
     recycler: RecyclerView,
     private val navController: NavController
 ) :
     RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>(), View.OnClickListener {
     private val recyclerView = recycler
 
+    /**
+     * Initializes the swipe-to-delete functionality for the RecyclerView.
+     */
+    init {
+        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback())
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+     /**
+     * The list of contacts to display.
+     */
     var contacts: List<Contact> = emptyList()
         set(newValue) {
+            val diffCallback = ContactsDiffCallback(field, newValue)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
             field = newValue
-            notifyDataSetChanged()
+            diffResult.dispatchUpdatesTo(this)
         }
 
     /**
@@ -63,19 +72,12 @@ class ContactsAdapter(
                 actionListener.onContactDelete(contact)
                 showUndoSnackbar(contact)
             }
-
-            else -> {
-                actionListener.onContactDetails(contact)
-            }
         }
     }
 
-    /**
-     * Returns the number of items in the list.
-     *
-     * @return The number of items in the list.
-     */
-    override fun getItemCount(): Int = contacts.size
+    override fun getItemCount(): Int {
+        return contacts.size
+    }
 
     /**
      * Creates a new ViewHolder instance when needed.
@@ -92,6 +94,18 @@ class ContactsAdapter(
     }
 
     /**
+     * ViewHolder class for representing each item in the list.
+     *
+     * @param binding The ViewBinding for the item layout.
+     */
+    inner class ContactsViewHolder(val binding: ItemContactBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        init {
+            itemView.setBackgroundResource(R.drawable.bg_view_holder)
+        }
+    }
+
+    /**
      * Binds the data to the ViewHolder.
      *
      * @param holder The ViewHolder to bind data to.
@@ -104,7 +118,8 @@ class ContactsAdapter(
             deleteImageViewButton.tag = contact
             contactNameTextView.text = contact.username
             contactCarrierTextView.text = contact.career
-            loadAvatar(holder, contact.avatar!!)
+            if (FeatureFlags.USE_GLIDE) avatar.setImageByGlide(contact.avatar)
+            else avatar.setImageByPicasso(contact.avatar)
         }
         setContactDetailListener(holder, contact)
     }
@@ -115,7 +130,7 @@ class ContactsAdapter(
      * @param holder The ViewHolder to bind data to.
      * @param contact The contact to bind data to.
      */
-    private fun setContactDetailListener(holder: ContactsViewHolder, contact: Contact){
+    private fun setContactDetailListener(holder: ContactsViewHolder, contact: Contact) {
         holder.itemView.setOnClickListener {
             val extras: Array<Pair<View, String>>
             with(holder.binding) {
@@ -126,10 +141,10 @@ class ContactsAdapter(
                     ),
                     setTransitionName(
                         contactNameTextView,
-                        Constants.TRANSITION_NAME_USERNAME+ contact.id
+                        Constants.TRANSITION_NAME_USERNAME + contact.id
                     ), setTransitionName(
                         contactCarrierTextView,
-                        Constants.TRANSITION_NAME_CAREER+ contact.id
+                        Constants.TRANSITION_NAME_CAREER + contact.id
                     )
                 )
             }
@@ -165,21 +180,12 @@ class ContactsAdapter(
 
         snackbar.duration = SNACKBAR_DURATION
         snackbar.setAction("UNDO") {
+            snackbar.animationMode = Snackbar.ANIMATION_MODE_FADE
+            snackbar.dismiss()
+
             actionListener.onContactRestore(contact)
         }
         snackbar.show()
-    }
-
-    /**
-     * ViewHolder class for representing each item in the list.
-     *
-     * @param binding The ViewBinding for the item layout.
-     */
-    inner class ContactsViewHolder(val binding: ItemContactBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        init {
-            itemView.setBackgroundResource(R.drawable.bg_view_holder)
-        }
     }
 
     /**
@@ -188,6 +194,7 @@ class ContactsAdapter(
     private inner class SwipeToDeleteCallback : ItemTouchHelper.SimpleCallback(
         0, ItemTouchHelper.RIGHT
     ) {
+
         /**
          * Called when the item is dragged or swiped.
          */
@@ -208,13 +215,5 @@ class ContactsAdapter(
             actionListener.onContactSwipeToDelete(position)
             showUndoSnackbar(contact)
         }
-    }
-
-    /**
-     * Initializes the swipe-to-delete functionality for the RecyclerView.
-     */
-    init {
-        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback())
-        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 }

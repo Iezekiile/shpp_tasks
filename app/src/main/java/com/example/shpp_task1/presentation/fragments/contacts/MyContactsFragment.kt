@@ -1,54 +1,38 @@
-package com.example.shpp_task1.view.fragments
+package com.example.shpp_task1.presentation.fragments.contacts
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shpp_task1.R
-import com.example.shpp_task1.databinding.FragmentAddContactBinding
+import com.example.shpp_task1.data.model.Contact
 import com.example.shpp_task1.databinding.FragmentMyContactsBinding
-import com.example.shpp_task1.databinding.ItemContactBinding
-import com.example.shpp_task1.model.Contact
-import com.example.shpp_task1.view.adapters.ContactActionListener
-import com.example.shpp_task1.view.adapters.ContactsAdapter
-import com.example.shpp_task1.view.adapters.SpaceItemDecoration
-import com.example.shpp_task1.viewmodel.ContactsViewModel
+import com.example.shpp_task1.presentation.fragments.addContact.AddContactDialogFragment
+import com.example.shpp_task1.presentation.fragments.contacts.adapter.ContactsAdapter
+import com.example.shpp_task1.presentation.fragments.contacts.utils.ContactsSpaceItemDecoration
+import com.example.shpp_task1.presentation.fragments.contacts.vm.ContactsActionListener
+import com.example.shpp_task1.presentation.fragments.contacts.vm.ContactsViewModel
+import com.example.shpp_task1.utils.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Activity class for displaying a list of contacts and managing contact-related interactions.
  */
-class MyContactsFragment : Fragment() {
+@AndroidEntryPoint
+class MyContactsFragment : Fragment(R.layout.fragment_my_contacts) {
 
-    private lateinit var binding: FragmentMyContactsBinding
-    private lateinit var itemContactBinding: ItemContactBinding
-    private lateinit var addContactBinding: FragmentAddContactBinding
+    private val binding by viewBinding<FragmentMyContactsBinding>()
+    private val contactsViewModel by viewModels<ContactsViewModel>()
     private lateinit var adapter: ContactsAdapter
-    private lateinit var contactsViewModel: ContactsViewModel
-    private lateinit var navController: NavController
 
-    /**
-     * Called when the activity is starting. Responsible for initializing various components.
-     */
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentMyContactsBinding.inflate(layoutInflater)
-        addContactBinding = FragmentAddContactBinding.inflate(layoutInflater)
-        itemContactBinding = ItemContactBinding.inflate(layoutInflater)
-        navController = findNavController()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setAdapter()
-        setViewModel()
         setListeners()
         setObservers()
         setRecyclerSettings()
-        return binding.root
     }
 
     /**
@@ -57,16 +41,12 @@ class MyContactsFragment : Fragment() {
     private fun setRecyclerSettings() {
         binding.recyclerContacts.layoutManager = LinearLayoutManager(context)
         val spaceBetweenItemsInPixels = resources.getDimensionPixelSize(R.dimen.margin_all_l)
-        binding.recyclerContacts.addItemDecoration(SpaceItemDecoration(spaceBetweenItemsInPixels))
+        binding.recyclerContacts.addItemDecoration(
+            ContactsSpaceItemDecoration(
+                spaceBetweenItemsInPixels
+            )
+        )
         binding.recyclerContacts.adapter = adapter
-    }
-
-    /**
-     * Initializes the ViewModel and connects it to the adapter.
-     */
-    private fun setViewModel() {
-        contactsViewModel = ViewModelProvider(this)[ContactsViewModel::class.java]
-        contactsViewModel.addAdapter(adapter)
     }
 
     /**
@@ -74,13 +54,9 @@ class MyContactsFragment : Fragment() {
      */
     private fun setAdapter() {
 
-        adapter = ContactsAdapter(object : ContactActionListener {
+        adapter = ContactsAdapter(object : ContactsActionListener {
             override fun onContactDelete(contact: Contact) {
                 contactsViewModel.onContactDelete(contact)
-            }
-
-            override fun onContactDetails(contact: Contact) {
-                contactsViewModel.onContactDetails(contact)
             }
 
             override fun onContactRestore(contact: Contact) {
@@ -94,7 +70,7 @@ class MyContactsFragment : Fragment() {
             override fun onContactAdd(contact: Contact) {
                 contactsViewModel.onContactAdd(contact)
             }
-        }, binding.recyclerContacts,  findNavController())
+        }, binding.recyclerContacts, findNavController())
     }
 
     /**
@@ -124,11 +100,11 @@ class MyContactsFragment : Fragment() {
     /**
      * Sets a click listener for the "Add Contacts" button to open the add contact dialog.
      */
+
     private fun setAddContactListener() {
         binding.addContacts.setOnClickListener {
             val dialog = AddContactDialogFragment(contactsViewModel)
             dialog.show(parentFragmentManager, "AddContactDialogFragment")
         }
     }
-
 }

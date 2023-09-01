@@ -1,37 +1,36 @@
-package com.example.shpp_task1.view.fragments
+package com.example.shpp_task1.presentation.fragments.detailView
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
-import com.bumptech.glide.Glide
 import com.example.shpp_task1.R
+import com.example.shpp_task1.data.model.Contact
 import com.example.shpp_task1.databinding.FragmentDetailViewBinding
-import com.example.shpp_task1.model.Contact
-import com.example.shpp_task1.utils.Constants
+import com.example.shpp_task1.utils.constants.Constants
+import com.example.shpp_task1.utils.constants.FeatureFlags
+import com.example.shpp_task1.utils.ext.setImageByGlide
+import com.example.shpp_task1.utils.ext.setImageByPicasso
+import com.example.shpp_task1.utils.viewBinding
 
 const val TRANSITION_DELAY = 100L
 
 /**
  * Fragment class for displaying detailed information about a contact.
  */
-class DetailViewFragment : Fragment() {
-    private lateinit var binding: FragmentDetailViewBinding
+class DetailViewFragment : Fragment(R.layout.fragment_detail_view) {
+
+    private val binding by viewBinding<FragmentDetailViewBinding>()
     private val args: DetailViewFragmentArgs by navArgs()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentDetailViewBinding.inflate(layoutInflater)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         postponeEnterTransition(TRANSITION_DELAY, java.util.concurrent.TimeUnit.MILLISECONDS)
         setContactInfo()
         setSharedElementsTransition(args.contactInfo)
-        return binding.root
+        setListeners()
+        super.onViewCreated(view, savedInstanceState)
     }
 
     /**
@@ -62,12 +61,18 @@ class DetailViewFragment : Fragment() {
             userName.text = contact.username
             homeAddress.text = contact.address
             career.text = contact.career
-            Glide.with(avatar.context)
-                .load(contact.avatar)
-                .circleCrop()
-                .placeholder(R.drawable.ic_contact_avatar)
-                .error(R.drawable.ic_contact_avatar)
-                .into(avatar)
+            if (FeatureFlags.USE_GLIDE) avatar.setImageByGlide(contact.avatar.toString())
+            else avatar.setImageByPicasso(contact.avatar.toString())
+        }
+    }
+
+    private fun setListeners() {
+        setBackButtonListener()
+    }
+
+    private fun setBackButtonListener() {
+        binding.buttonBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 }

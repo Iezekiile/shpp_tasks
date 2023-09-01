@@ -90,6 +90,7 @@
         android:textColor="@color/white_text"
         android:textSize="@dimen/font_all_size_xl"
         android:textStyle="bold"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="@id/startGuideLine"
         app:layout_constraintTop_toBottomOf="@id/textContacts"
         tools:ignore="TouchTargetSizeCheck" />

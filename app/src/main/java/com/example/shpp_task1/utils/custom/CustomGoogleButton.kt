@@ -1,4 +1,4 @@
-package com.example.shpp_task1.view.custom
+package com.example.shpp_task1.utils.custom
 
 import android.content.Context
 import android.content.res.TypedArray
@@ -27,7 +27,7 @@ class CustomGoogleButton(context: Context, private val attrs: AttributeSet) :
         initializationAttrs()
     }
 
-    /*
+    /**
      * Initialization attributes from xml.
      */
     private fun initializationAttrs() {
@@ -45,7 +45,7 @@ class CustomGoogleButton(context: Context, private val attrs: AttributeSet) :
         typedArray.recycle()
     }
 
-    /*
+    /**
     * Set text to button
      */
     private fun setText(typedArray: TypedArray) {
@@ -54,7 +54,7 @@ class CustomGoogleButton(context: Context, private val attrs: AttributeSet) :
         text = customText
     }
 
-    /*
+    /**
      * Set text size to button
      */
     private fun setTextSize(typedArray: TypedArray) {
@@ -65,7 +65,7 @@ class CustomGoogleButton(context: Context, private val attrs: AttributeSet) :
         textSize = customTextSize.toFloat()
     }
 
-    /*
+    /**
      * Set text color to button
      */
     private fun setTextColor(typedArray: TypedArray) {
@@ -76,7 +76,7 @@ class CustomGoogleButton(context: Context, private val attrs: AttributeSet) :
         setTextColor(customTextColor)
     }
 
-    /*
+    /**
      * Set font family to button
      */
     private fun setFontFamily(typedArray: TypedArray) {
@@ -87,7 +87,7 @@ class CustomGoogleButton(context: Context, private val attrs: AttributeSet) :
         }
     }
 
-    /*
+    /**
      * Set background to button
      */
     private fun setBackground(typedArray: TypedArray) {
@@ -98,7 +98,7 @@ class CustomGoogleButton(context: Context, private val attrs: AttributeSet) :
         background = customBackground
     }
 
-    /*
+    /**
      * Set icon to button
      */
     private fun setIcon(typedArray: TypedArray) {

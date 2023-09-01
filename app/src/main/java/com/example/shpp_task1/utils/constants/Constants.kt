@@ -1,4 +1,4 @@
-package com.example.shpp_task1.utils
+package com.example.shpp_task1.utils.constants
 
 /**
  * Constants class for storing constants.

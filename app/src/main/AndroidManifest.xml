@@ -17,9 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:enableOnBackInvokedCallback="true"
+        android:name="com.example.shpp_task1.App"
         tools:targetApi="33">
+
         <activity
-            android:name=".view.MainActivity"
+            android:name=".presentation.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -43,6 +43,7 @@
         android:layout_height="24dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_back"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="@id/headerBg"
         app:layout_constraintStart_toStartOf="@id/startGuideLine"
         app:layout_constraintTop_toTopOf="@id/headerBg"
@@ -122,6 +123,7 @@
                 android:layout_marginStart="@dimen/margin_all_xl"
                 android:contentDescription="@string/profile_avatar"
                 android:src="@drawable/ic_add_avatar"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="@id/avatar"
                 app:layout_constraintStart_toEndOf="@id/avatar"
                 app:layout_constraintTop_toTopOf="@+id/avatar" />

@@ -1,4 +1,4 @@
-package com.example.shpp_task1.view.fragments
+package com.example.shpp_task1.presentation.fragments.addContact
 
 
 import android.app.Activity.RESULT_OK
@@ -6,17 +6,18 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
-import com.bumptech.glide.Glide
 import com.example.shpp_task1.R
+import com.example.shpp_task1.data.model.Contact
 import com.example.shpp_task1.databinding.FragmentAddContactBinding
-import com.example.shpp_task1.model.Contact
-import com.example.shpp_task1.viewmodel.ContactsViewModel
+import com.example.shpp_task1.presentation.fragments.contacts.vm.ContactsViewModel
+import com.example.shpp_task1.utils.constants.FeatureFlags
+import com.example.shpp_task1.utils.ext.setImageByGlide
+import com.example.shpp_task1.utils.ext.setImageByPicasso
+import com.example.shpp_task1.utils.viewBinding
 
 
 /**
@@ -25,27 +26,11 @@ import com.example.shpp_task1.viewmodel.ContactsViewModel
  * @param contactsViewModel The ViewModel responsible for managing contact data.
  */
 class AddContactDialogFragment(private val contactsViewModel: ContactsViewModel) :
-    DialogFragment() {
+    DialogFragment(R.layout.fragment_add_contact) {
 
-    private lateinit var addContactBinding: FragmentAddContactBinding
+    private val addContactBinding by viewBinding<FragmentAddContactBinding>()
     private var avatarUri: Uri? = null
 
-    /**
-     * Creates and returns the view hierarchy associated with the fragment.
-     *
-     * @param inflater The LayoutInflater object that can be used to inflate views in the fragment.
-     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
-     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state.
-     * @return The root view of the fragment's layout.
-     */
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        addContactBinding = FragmentAddContactBinding.inflate(inflater, container, false)
-
-        return addContactBinding.root
-    }
 
     /**
      * Called immediately after onCreateView() has returned, but before any saved state has been restored.
@@ -64,6 +49,13 @@ class AddContactDialogFragment(private val contactsViewModel: ContactsViewModel)
     private fun setListeners() {
         setSaveButtonListener()
         setAddAvatarButtonListener()
+        setBackButtonListener()
+    }
+
+    private fun setBackButtonListener() {
+        addContactBinding.buttonBack.setOnClickListener {
+            dismiss()
+        }
     }
 
     /**
@@ -115,12 +107,10 @@ class AddContactDialogFragment(private val contactsViewModel: ContactsViewModel)
         if (result.resultCode == RESULT_OK && result.data != null) {
             val selectedImageUri = result.data?.data
             avatarUri = selectedImageUri
-            Glide.with(addContactBinding.avatar.context)
-                .load(selectedImageUri)
-                .circleCrop()
-                .placeholder(R.drawable.ic_contact_avatar)
-                .error(R.drawable.ic_contact_avatar)
-                .into(addContactBinding.avatar)
+            with(addContactBinding) {
+                if (FeatureFlags.USE_GLIDE) avatar.setImageByGlide(avatarUri.toString())
+                else avatar.setImageByPicasso(avatarUri.toString())
+            }
         }
     }
 }
