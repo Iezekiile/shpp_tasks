@@ -90,6 +90,7 @@
         android:textColor="@color/white_text"
         android:textSize="@dimen/font_all_size_xl"
         android:textStyle="bold"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="@id/startGuideLine"
         app:layout_constraintTop_toBottomOf="@id/textContacts"
         tools:ignore="TouchTargetSizeCheck" />
@@ -113,5 +114,18 @@
         app:layout_constraintEnd_toEndOf="@id/endGuideLine"
         app:layout_constraintStart_toStartOf="@id/startGuideLine"
         app:layout_constraintTop_toTopOf="@id/centerBg" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/deleteAll"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_floating_delete_button"
+        android:src="@drawable/ic_delete_floating"
+        android:layout_marginEnd="@dimen/margin_all_l"
+        android:layout_marginBottom="@dimen/margin_my_contacts_floating_delete_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

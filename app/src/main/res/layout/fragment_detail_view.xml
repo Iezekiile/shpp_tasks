@@ -89,7 +89,7 @@
         android:layout_height="24dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_back"
-
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toTopOf="@id/topGuideline"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />

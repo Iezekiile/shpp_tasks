@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/viewPagerFragment">
+
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.example.shpp_task1.presentation.fragments.viewpager.ViewPagerFragment"
+        android:label="ViewPagerFragment">
+
+        <action
+            android:id="@+id/action_viewPager_to_detailViewFragment"
+            app:destination="@id/detailViewFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/detailViewFragment"
+        android:name="com.example.shpp_task1.presentation.fragments.detailView.DetailViewFragment"
+        android:label="DetailViewFragment"
+        tools:layout="@layout/fragment_detail_view">
+        <argument
+            android:name="contactInfo"
+            app:argType="com.example.shpp_task1.data.model.Contact" />
+    </fragment>
+
+</navigation>

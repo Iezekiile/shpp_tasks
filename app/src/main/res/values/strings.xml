@@ -21,7 +21,7 @@
     <string name="google" translatable="false">GOOGLE</string>
     <string name="empty_error">Field cannot be empty</string>
     <string name="short_password_error">Password must be longer than 8 characters</string>
-    <string name="space_on_password_error">Password cannot contain spaces</string>
+    <string name="space_in_password_error">Password cannot contain spaces</string>
     <string name="only_lowercase_error">Password must contain at least one uppercase letter</string>
     <string name="only_uppercase_error">Password must contain at least one lowercase letter</string>
     <string name="digit_lack_error">Password must contain at least one digit</string>
@@ -37,4 +37,12 @@
     <string name="contact_removed">Contact has been removed</string>
     <string name="profile">Profile</string>
     <string name="message">Message</string>
+    <string name="log_out">Log out</string>
+    <string name="hello">Hello!</string>
+    <string name="enter_your_email_and_password_below">Enter your email and password below</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="login">Login</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="wrong_email_or_password">Wrong email or password</string>
+
 </resources>

@@ -10,6 +10,7 @@
     <dimen name="margin_all_xs">2dp</dimen>
     <dimen name="margin_all_s">4dp</dimen>
     <dimen name="margin_all_m">8dp</dimen>
+    <dimen name="margin_all_xm">12dp</dimen>
     <dimen name="margin_all_l">16dp</dimen>
     <dimen name="margin_all_xl">24dp</dimen>
     <dimen name="margin_all_xxl">32dp</dimen>
@@ -20,6 +21,7 @@
     <dimen name="margin_item_user_xxm">12dp</dimen>
 
     <dimen name="margin_my_contacts_topGuideline">120dp</dimen>
+    <dimen name="margin_my_contacts_floating_delete_button">45dp</dimen>
 
     <dimen name="margin_add_contact_headerGuideline">57dp</dimen>
     <dimen name="margin_add_contact_avatar">14dp</dimen>

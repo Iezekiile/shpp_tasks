@@ -20,7 +20,7 @@
     <string name="register">Зареєструватися</string>
     <string name="empty_error">Поле не може бути пустим</string>
     <string name="short_password_error">Пароль повинен мати принаймні 8 символів</string>
-    <string name="space_on_password_error">Пароль не може містити пробіли</string>
+    <string name="space_in_password_error">Пароль не може містити пробіли</string>
     <string name="only_lowercase_error">Пароль повинен містити принаймні одну велику літеру</string>
     <string name="only_uppercase_error">Пароль повинен містити принаймні одну маленьку літеру</string>
     <string name="digit_lack_error">Пароль повинен містити принаймні одну цифру</string>
@@ -36,4 +36,11 @@
     <string name="contact_removed">Контакт видалено</string>
     <string name="profile">Профіль</string>
     <string name="message">Повідомлення</string>
+    <string name="log_out">Вихід</string>
+    <string name="hello">Привіт!</string>
+    <string name="enter_your_email_and_password_below">Введіть ваш емейл і пароль нижче</string>
+    <string name="don_t_have_an_account">Не маєте аккаунт?</string>
+    <string name="login">Вхід</string>
+    <string name="forgot_your_password">Забули пароль?</string>
+    <string name="wrong_email_or_password">Невірний емейл або пароль</string>
 </resources>
