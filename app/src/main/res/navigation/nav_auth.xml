@@ -9,13 +9,30 @@
         android:id="@+id/authFragment"
         android:name="com.example.shpp_task1.presentation.fragments.auth.register.RegisterFragment"
         android:label="AuthFragment"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_authFragment_to_registerExtFragment"
+            app:destination="@id/registerExtFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.shpp_task1.presentation.fragments.auth.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_authFragment"
             app:destination="@id/authFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerExtFragment"
+        android:name="com.example.shpp_task1.presentation.fragments.auth.registerExt.RegisterExtFragment"
+        android:label="RegisterExtFragment"
+        tools:layout="@layout/fragment_register_ext">
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="string" />
     </fragment>
 </navigation>

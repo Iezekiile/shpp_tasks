@@ -219,7 +219,7 @@
         android:clickable="true"
         android:fontFamily="@font/open_sans_family"
         android:foreground="?android:attr/selectableItemBackground"
-        android:text="@string/sign_in"
+        android:text="@string/sign_up"
         android:textColor="@color/white"
         android:textSize="@dimen/font_all_size_m"
         android:textStyle="bold"

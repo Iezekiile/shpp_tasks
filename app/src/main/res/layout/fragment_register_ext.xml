@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/margin_all_l" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/margin_all_l" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/centerGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/avatar"
+        android:layout_width="113dp"
+        android:layout_height="113dp"
+        android:layout_marginBottom="@dimen/margin_all_xl"
+        android:background="@drawable/ic_contact_avatar"
+        android:contentDescription="@string/profile_avatar"
+        android:foreground="@drawable/imgv_fg_founded"
+        app:layout_constraintBottom_toTopOf="@+id/flow_greeting"
+        app:layout_constraintEnd_toStartOf="@+id/endGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/addAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_all_xl"
+        android:contentDescription="@string/profile_avatar"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_add_avatar"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@+id/avatar" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_greeting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/margin_all_xl"
+        app:constraint_referenced_ids="yourProfileText, textFillProfileHint"
+        app:flow_verticalGap="@dimen/margin_all_m"
+        app:layout_constraintBottom_toTopOf="@+id/userNameInputLayout"
+        app:layout_constraintEnd_toStartOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@id/startGuideline" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/yourProfileText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        android:fontFamily="@font/open_sans_family"
+        android:text="@string/your_profile_data"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/font_all_size_xxl"
+        android:textStyle="bold"
+       />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textFillProfileHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_all_m"
+        android:fontFamily="@font/open_sans_family"
+        android:text="@string/fill_out_the_profile_and_go_to_the_application"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/font_all_size_s"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/userNameInputLayout"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/endGuideline"
+        app:layout_constraintStart_toEndOf="@id/startGuideline"
+        app:layout_constraintBottom_toTopOf="@id/centerGuideline">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userNameTextInput"
+            style="@style/TextInputLayout_editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/user_name"
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName"
+            android:lines="1"
+            android:paddingStart="@dimen/margin_all_m"
+            android:textColor="@color/white_text"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneInputLayout"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_all_xl"
+        app:layout_constraintTop_toBottomOf="@id/centerGuideline"
+        app:layout_constraintEnd_toStartOf="@id/endGuideline"
+        app:layout_constraintStart_toEndOf="@id/startGuideline">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneTextInput"
+            style="@style/TextInputLayout_editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mobile_phone"
+            android:imeOptions="actionDone"
+            android:inputType="phone"
+            android:lines="1"
+            android:paddingStart="@dimen/margin_all_m"
+            android:textColor="@color/white_text"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancel_button"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="@dimen/margin_all_l"
+        android:background="@drawable/btn_bg_rounded_border_white"
+        android:fontFamily="@font/open_sans_family"
+        android:text="@string/cancel"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/font_all_size_m"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/forwardButton"
+        app:layout_constraintEnd_toStartOf="@id/endGuideline"
+        app:layout_constraintStart_toEndOf="@id/startGuideline"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/forwardButton"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="@dimen/margin_all_l"
+        android:background="@drawable/btn_bg_rounded"
+        android:fontFamily="@font/open_sans_family"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/forward"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/font_all_size_l"
+        android:textStyle="bold"
+        android:theme="@style/ButtonStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/endGuideline"
+        app:layout_constraintStart_toEndOf="@id/startGuideline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
