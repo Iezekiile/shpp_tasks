@@ -16,7 +16,7 @@ import com.example.shpp_task1.databinding.FragmentLoginBinding
 import com.example.shpp_task1.presentation.activities.MainActivity
 import com.example.shpp_task1.presentation.fragments.auth.vm.AuthViewModel
 import com.example.shpp_task1.utils.constants.Constants
-import com.example.shpp_task1.utils.viewBinding
+import com.example.shpp_task1.presentation.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -47,7 +47,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             val password = binding.passwordTextInput.text.toString()
             if (viewModel.onLogin(email, password)) {
                 viewModel.onRememberMe(binding.checkBoxRememberMe.isChecked)
-                startActivity(Intent(requireActivity(), MainActivity::class.java))
+                startActivity(Intent(requireActivity(), MainActivity::class.java))      //todo DRY
                 requireActivity().finish()
             } else {
                 Toast.makeText(context, getText(R.string.wrong_email_or_password), Toast.LENGTH_SHORT).show()

@@ -14,7 +14,7 @@ import com.example.shpp_task1.presentation.activities.MainActivity
 import com.example.shpp_task1.presentation.fragments.auth.vm.AuthViewModel
 import com.example.shpp_task1.utils.constants.Constants
 import com.example.shpp_task1.utils.enums.ValidationPasswordErrors
-import com.example.shpp_task1.utils.viewBinding
+import com.example.shpp_task1.presentation.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 const val MIN_PASSWORD_LENGTH = 8

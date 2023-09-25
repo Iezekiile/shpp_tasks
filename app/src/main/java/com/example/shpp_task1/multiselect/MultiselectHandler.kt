@@ -10,8 +10,6 @@ interface MultiselectHandler<T> {
 
     fun setItemsFlow(coroutineScope: CoroutineScope, itemsFlow: Flow<List<T>>)
     fun listen(): Flow<MultiselectState<T>>
-    fun check(item: Contact)
-    fun clear(item: Contact)
-    fun toggle(item: Contact): Int
+    fun toggle(item: Contact): Boolean
 
 }

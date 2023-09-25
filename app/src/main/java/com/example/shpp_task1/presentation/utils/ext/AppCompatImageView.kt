@@ -1,4 +1,4 @@
-package com.example.shpp_task1.utils.ext
+package com.example.shpp_task1.presentation.utils.ext
 
 
 import androidx.appcompat.widget.AppCompatImageView
@@ -11,6 +11,12 @@ import com.squareup.picasso.Picasso
 /*
  * Extension functions for loading images.
  */
+
+
+//todo ext for :
+// if (FeatureFlags.USE_GLIDE) avatar.setImageByGlide(avatarUri.toString())
+//  else avatar.setImageByPicasso(avatarUri.toString())
+
 
 /**
  * Load image by Picasso.

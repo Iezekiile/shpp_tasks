@@ -1,4 +1,4 @@
-package com.example.shpp_task1.utils.custom
+package com.example.shpp_task1.presentation.utils.custom
 
 import android.content.Context
 import android.content.res.TypedArray

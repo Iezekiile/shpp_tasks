@@ -6,5 +6,5 @@ interface MultiselectState<T> {
 
     fun isChecked(item: T): Boolean
 
-    val totalCheckedCount: Int
+    val isMultiselect: Boolean
 }

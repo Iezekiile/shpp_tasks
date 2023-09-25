@@ -9,7 +9,7 @@ class ViewPagerAdapter(fragmentActivity: Fragment) :
     FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int {
-        return 2
+        return 2    //todo const // enum
     }
 
     override fun createFragment(position: Int): Fragment {

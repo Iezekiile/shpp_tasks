@@ -14,21 +14,21 @@ import com.example.shpp_task1.R
 import com.example.shpp_task1.data.model.Contact
 import com.example.shpp_task1.data.model.ContactListItem
 import com.example.shpp_task1.databinding.FragmentAddContactBinding
-import com.example.shpp_task1.presentation.fragments.contacts.vm.ContactsViewModel
+import com.example.shpp_task1.presentation.fragments.contacts.MyContactsViewModel
+import com.example.shpp_task1.presentation.utils.ext.setImageByGlide
+import com.example.shpp_task1.presentation.utils.ext.setImageByPicasso
 import com.example.shpp_task1.utils.constants.FeatureFlags
-import com.example.shpp_task1.utils.ext.setImageByGlide
-import com.example.shpp_task1.utils.ext.setImageByPicasso
-import com.example.shpp_task1.utils.viewBinding
+import com.example.shpp_task1.presentation.utils.viewBinding
 
 
 /**
  * DialogFragment class for adding a new contact using a dialog.
  *
- * @param contactsViewModel The ViewModel responsible for managing contact data.
+ * @param myContactsViewModel The ViewModel responsible for managing contact data.
  */
 
 
-class AddContactDialogFragment(private val contactsViewModel: ContactsViewModel) :
+class AddContactDialogFragment(private val myContactsViewModel: MyContactsViewModel) :
     DialogFragment(R.layout.fragment_add_contact) {
 
     private val addContactBinding by viewBinding<FragmentAddContactBinding>()
@@ -65,7 +65,7 @@ class AddContactDialogFragment(private val contactsViewModel: ContactsViewModel)
                 birthday = addContactBinding.dateOfBirthTextInput.text.toString()
             )
 
-            contactsViewModel.onContactAdd(ContactListItem(contact, false))
+            myContactsViewModel.onContactAdd(ContactListItem(contact, false))
             dismiss()
         }
     }

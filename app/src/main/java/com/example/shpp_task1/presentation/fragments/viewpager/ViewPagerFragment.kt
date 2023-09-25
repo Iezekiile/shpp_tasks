@@ -2,21 +2,19 @@ package com.example.shpp_task1.presentation.fragments.viewpager
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.shpp_task1.R
 import com.example.shpp_task1.databinding.FragmentViewPagerBinding
 import com.example.shpp_task1.utils.constants.FeatureFlags
-import com.example.shpp_task1.utils.viewBinding
+import com.example.shpp_task1.presentation.utils.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 
-class ViewPagerFragment : Fragment(R.layout.fragment_view_pager), ViewPagerProvider,
-    ViewPagerRequireActivityProvider {
+class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
 
     private val binding by viewBinding<FragmentViewPagerBinding>()
-    private lateinit var viewPager: ViewPager2
+    lateinit var viewPager: ViewPager2
     private lateinit var adapter: ViewPagerAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,6 +27,7 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager), ViewPagerProvi
         viewPager = binding.viewPager
         adapter = ViewPagerAdapter(this)
         viewPager.adapter = adapter
+        viewPager.offscreenPageLimit = 1    //todo const
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
     }
 
@@ -36,7 +35,7 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager), ViewPagerProvi
         if (FeatureFlags.USE_TAB_LAYOUT) {
             TabLayoutMediator(binding.tabLayout, viewPager) { tab, position ->
                 tab.text = when (position) {
-                    0 -> getString(R.string.profile)
+                    0 -> getString(R.string.profile)    //todo 0 -> ENUM
                     1 -> getString(R.string.contacts)
                     else -> throw IllegalStateException("Bug tab!")
                 }
@@ -46,11 +45,4 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager), ViewPagerProvi
         }
     }
 
-    override fun getViewPager(): ViewPager2 {
-        return viewPager
-    }
-
-    override fun getRequireActivity(): AppCompatActivity {
-        return requireActivity() as AppCompatActivity
-    }
 }

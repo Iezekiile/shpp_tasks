@@ -1,4 +1,4 @@
-package com.example.shpp_task1.utils
+package com.example.shpp_task1.presentation.utils
 
 import android.view.View
 import androidx.fragment.app.Fragment

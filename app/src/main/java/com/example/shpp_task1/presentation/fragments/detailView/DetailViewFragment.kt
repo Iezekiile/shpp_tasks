@@ -9,11 +9,11 @@ import androidx.transition.TransitionInflater
 import com.example.shpp_task1.R
 import com.example.shpp_task1.data.model.Contact
 import com.example.shpp_task1.databinding.FragmentDetailViewBinding
+import com.example.shpp_task1.presentation.utils.ext.setImageByGlide
+import com.example.shpp_task1.presentation.utils.ext.setImageByPicasso
 import com.example.shpp_task1.utils.constants.Constants
 import com.example.shpp_task1.utils.constants.FeatureFlags
-import com.example.shpp_task1.utils.ext.setImageByGlide
-import com.example.shpp_task1.utils.ext.setImageByPicasso
-import com.example.shpp_task1.utils.viewBinding
+import com.example.shpp_task1.presentation.utils.viewBinding
 
 const val TRANSITION_DELAY = 100L
 

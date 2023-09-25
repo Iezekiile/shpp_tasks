@@ -46,36 +46,20 @@ class ContactsMultiselectHandler : MultiselectHandler<Contact>, MultiselectState
     }
 
 
-    override fun check(item: Contact) {
-        if (!exists(item)) return
-        checkedIds.add(item.id!!)
-        notifyUpdates()
-    }
-
-
-    override fun clear(item: Contact) {
-        if (!exists(item)) return
-        checkedIds.remove(item.id)
-        notifyUpdates()
-    }
-
-
     private fun exists(item: Contact): Boolean {
         return items.any { it.id == item.id }
     }
 
 
-    override fun toggle(item: Contact): Int {
-        if (isChecked(item)) {
-            clear(item)
-        } else {
-            check(item)
-        }
-        return totalCheckedCount
+    override fun toggle(item: Contact): Boolean {
+        if (!exists(item)) return isMultiselect
+        if (isChecked(item)) checkedIds.remove(item.id) else checkedIds.add(item.id!!)
+        notifyUpdates()
+        return isMultiselect
     }
 
-    override val totalCheckedCount: Int
-        get() = checkedIds.size
+    override val isMultiselect: Boolean
+        get() = checkedIds.size > 0
 
     override fun isChecked(item: Contact): Boolean {
         return checkedIds.contains(item.id)

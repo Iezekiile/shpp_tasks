@@ -6,6 +6,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 /**
  * Module for providing dependencies for the [ContactsManager] class.
@@ -15,5 +16,6 @@ import dagger.hilt.components.SingletonComponent
 abstract class ContactManagerModule {
 
     @Binds
+    @Singleton
     abstract fun bindContactManager(manager: RepositoryContacts): ContactsManager
 }

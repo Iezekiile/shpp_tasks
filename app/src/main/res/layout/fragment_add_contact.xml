@@ -75,6 +75,7 @@
         app:layout_constraintStart_toStartOf="@id/headerBg"
         app:layout_constraintTop_toBottomOf="@id/headerBg">
 
+        <!-- todo: constraint -> linear -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/innerScrollLayout"
             android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.shpp_task1.utils.ext
+package com.example.shpp_task1.presentation.utils.ext
 
 import android.graphics.Bitmap
 import android.graphics.BitmapShader

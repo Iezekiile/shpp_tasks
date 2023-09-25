@@ -1,4 +1,4 @@
-package com.example.shpp_task1.presentation.fragments.contacts.vm
+package com.example.shpp_task1.presentation.fragments.contacts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +10,7 @@ import com.example.shpp_task1.data.source.contacts.RepositoryContacts
 import com.example.shpp_task1.di.ContactsMultiselect
 import com.example.shpp_task1.multiselect.MultiselectHandler
 import com.example.shpp_task1.multiselect.MultiselectState
+import com.example.shpp_task1.presentation.fragments.contacts.interfaces.ContactsActionListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
@@ -23,17 +24,16 @@ import javax.inject.Inject
  * @param multiselectHandler The handler responsible for managing multiselect mode.
  */
 @HiltViewModel
-class ContactsViewModel @Inject constructor(
+class MyContactsViewModel @Inject constructor(
     private val repositoryContacts: RepositoryContacts,
     @ContactsMultiselect private val multiselectHandler: MultiselectHandler<Contact>
-) : ViewModel(),
-    ContactsActionListener {
+) : ViewModel() {
 
-    private val _contacts: MutableLiveData<State> = MutableLiveData()
-    val contacts: LiveData<State> = _contacts
+    private val _contacts: MutableLiveData<MyContactsState> = MutableLiveData()
+    val contacts: LiveData<MyContactsState> = _contacts
 
-    private val _multiselectModeLiveData: MutableLiveData<Int> = MutableLiveData()
-    val multiselectModeLiveData: LiveData<Int> = _multiselectModeLiveData
+    private val _multiselectMode: MutableLiveData<Boolean> = MutableLiveData(false)
+    val multiselectMode: LiveData<Boolean> = _multiselectMode
 
     init {
         viewModelScope.launch {
@@ -48,28 +48,35 @@ class ContactsViewModel @Inject constructor(
         }
     }
 
-    override fun onContactDelete(contact: ContactListItem) {
-        repositoryContacts.deleteContact(contact.originContact.id)
+    fun onContactDelete(contactItem: ContactListItem) {
+        repositoryContacts.deleteContact(contactItem.originContact.id)
     }
 
-    override fun onContactRestore(contact: ContactListItem) {
-        repositoryContacts.addContact(contact.originContact)
+    fun onContactClick(contactItem: ContactListItem) {
+        return
     }
 
-    override fun onContactAdd(contact: ContactListItem) {
-        repositoryContacts.addContact(contact.originContact)
+    fun onLongClick(contactItem: ContactListItem) {
+        return
+    }
+    fun onContactRestore(contactItem: ContactListItem) {
+        repositoryContacts.addContact(contactItem.originContact)
     }
 
-    override fun onContactToggle(contact: ContactListItem) {
-        val multiselectMode = multiselectHandler.toggle(contact.originContact)
+    fun onContactAdd(contactItem: ContactListItem) {
+        repositoryContacts.addContact(contactItem.originContact)
+    }
+
+    fun onContactToggle(contactItem: ContactListItem) {
+        val multiselectMode = multiselectHandler.toggle(contactItem.originContact)
         onMultiSelectMode(multiselectMode)
     }
 
-    override fun onMultiSelectMode(multiselectMode: Int) {
-        _multiselectModeLiveData.value = multiselectMode
+    fun onMultiSelectMode(multiselectMode: Boolean) {
+        _multiselectMode.postValue(multiselectMode)
     }
 
-    override fun deleteSelectedContacts() {
+    fun deleteSelectedContacts() {
         for (contact in contacts.value!!.contactList) {
             if (contact.isChecked) {
                 repositoryContacts.deleteContact(contact.id)
@@ -80,18 +87,15 @@ class ContactsViewModel @Inject constructor(
     private fun merge(
         cats: List<Contact>,
         multiChoiceState: MultiselectState<Contact>
-    ): State {
-        return State(
+    ): MyContactsState {
+        return MyContactsState(
             contactList = cats.map { cat ->
                 ContactListItem(cat, multiChoiceState.isChecked(cat))
             },
-            multiselectMode = multiChoiceState.totalCheckedCount > 0
+            multiselectMode = multiChoiceState.isMultiselect
         )
     }
 
-    class State(
-        val contactList: List<ContactListItem>,
-        val multiselectMode: Boolean
-    )
+
 }
 

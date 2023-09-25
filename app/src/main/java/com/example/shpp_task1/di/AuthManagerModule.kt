@@ -6,6 +6,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
 /**
  * Module for auth manager
  */
@@ -14,5 +16,6 @@ import dagger.hilt.components.SingletonComponent
 abstract class AuthManagerModule {
 
     @Binds
+    @Singleton
     abstract fun bindAuthManager(manager: AuthController): AuthManager
 }

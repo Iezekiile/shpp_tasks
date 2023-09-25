@@ -176,7 +176,7 @@
         app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxRememberMe" />
 
-    <com.example.shpp_task1.utils.custom.CustomGoogleButton
+    <com.example.shpp_task1.presentation.utils.custom.CustomGoogleButton
         android:id="@+id/buttonGoogleSignIn"
         app:buttonFontFamily="@font/open_sans_semi_bold"
         android:text="@string/google"
